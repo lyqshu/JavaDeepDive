@@ -9,6 +9,13 @@ public class VolatileTest2 {
 
     private static final int THREADCOUNT = 200;
 
+    private static void spin(int times){
+        long total=0;
+        for(int i=0; i<times; i++){
+            total+=i;
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
 
         Thread threads[] = new Thread[THREADCOUNT];
@@ -17,7 +24,7 @@ public class VolatileTest2 {
             threads[i] = new Thread(()->{
                 int tt =0;
                 while(!isStop){
-                      tt+=tt;
+                      spin(100000);
                 }
             });
         }
